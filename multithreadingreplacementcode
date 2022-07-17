@@ -1,0 +1,18 @@
+private boolean isDoingThing = false;
+    @Override
+    public void loop() {
+        if(gamepad2.y && !isDoingThing) {
+            mantisClass.lineararm.setTargetPosition((384*2)+235);
+            mantisClass.lineararm.setPower(0.8);
+            mantisClass.lineararm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            isDoingThing = true;
+        }
+        
+        if (!mantisClass.lineararm.isBusy() && isDoingThing) {
+            mantisClass.rotatearm.setPosition(0.8);
+            isDoingThing = false;
+        }
+        
+        // Other stuff can happen at the same time
+    }
+ 
